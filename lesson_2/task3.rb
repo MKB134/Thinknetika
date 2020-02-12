@@ -5,4 +5,4 @@ fib = [0,1]
   fib << next_fib
 end
 
-puts fib 
+puts fib

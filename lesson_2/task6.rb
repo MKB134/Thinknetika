@@ -9,10 +9,10 @@ loop do
   print "кол-во: "
   count = gets.chomp.to_f
   
-  cart[name] = { P: price, C: count}  
+  cart[name] = { p: price, c: count}  
 end 
 
-cart.each {|name, hash| sum += hash [:P] * hash [:C]}
+cart.each {|name, hash| sum += hash [:p] * hash [:c]}
 
 puts cart
-puts "Итого: #{sum}" 
+puts "Итого: #{sum}"
