@@ -10,8 +10,8 @@ days_in_a_month[1] = 29 if yr % 400 == 0 || ( yr % 4 == 0 && yr % 100 != 0)
 
 sum = 0
 for i in 0..mn-2
-  sum += days_in_a_month[i]
-end
+  sum = days_in_a_month.take(mn - 1).sum
 sum += dt
+end
 
 puts "Порядковый номер даты: #{sum}" 
