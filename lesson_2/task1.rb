@@ -10,5 +10,6 @@ jul: 31,
 aug: 31,
 sep: 30,
 oct: 31,
-nov: 31 }
-month.each {|month, days| puts month if days == 30}
+nov: 31
+}
+month.each {|month, days| puts month if days == 30} 

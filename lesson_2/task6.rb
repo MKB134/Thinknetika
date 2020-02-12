@@ -15,4 +15,4 @@ end
 cart.each {|name, hash| sum += hash [:P] * hash [:C]}
 
 puts cart
-puts "Итого: #{sum}"
+puts "Итого: #{sum}" 
