@@ -1,7 +1,7 @@
 class Train
 
-  attr_accessor :speed, :number, :car_count, :route, :station
-  attr_reader :type
+  attr_accessor :speed, :number, :car_count
+  attr_reader :type, :route, :current_station
 
   def initialize(number, type, car_count)
     @number = number
@@ -16,10 +16,10 @@ class Train
   end
 
   def add_car
-    if speed.zero? 
+    if speed.zero?
       self.car_count += 1
       puts "К поезду №#{number} прицепили вагон. Теперь их #{car_count}."
-    else 
+    else
       puts "На ходу нельзя прицеплять вагоны!"
     end
   end
@@ -27,40 +27,51 @@ class Train
   def remove_car
     if car_count.zero?
       puts "Вагонов уже не осталось."
-    elsif speed.zero? 
+    elsif speed.zero?
       self.car_count -= 1
       puts "От поезда №#{number} отцепили вагон. Теперь их #{car_count}."
-    else 
+    else
       puts "На ходу нельзя отцеплять вагоны!"
     end
   end
 
   def take_route(route)
-    self.route = route
-    puts "Поезду №#{number} задан маршрут #{route.stations.first.name} - #{route.stations.last.name}" 
+    @route = route
+    @current_station = route.stations.first
+    @current_station.get_train(self)
   end
 
-  def go_to(station)
-    if route.nil?
-      puts "Без маршрута поезд заблудится."
-    elsif @station == station
-      puts "Поезд №#{@number} и так на станции #{@station.name}"
-    elsif route.stations.include?(station)
-      @station.send_train(self) if @station
-      @station = station
-      station.get_train(self)
+  def current_station_index
+    @route.stations.index(@current_station)
+  end
+
+  def next_station
+    @route.stations[current_station_index + 1]
+  end
+
+  def prev_station
+    @route.stations[current_station_index - 1] if current_station_index != 0
+  end
+
+  # Может перемещаться между станциями, указанными в маршруте. Перемещение возможно вперед и назад
+
+  def forward
+    if next_station
+      @current_station.send_train(self)
+      @current_station = next_station
+      @current_station.get_train(self)
     else
-      puts "Станция #{station.name} не входит в маршрут поезда №#{number}"
+      puts "Послед. станция"
     end
   end
 
-  def stations_around
-    if route.nil?
-      puts "Маршрут не задан"
+  def backward
+    if prev_station
+      @current_station.send_train(self)
+      @current_station = prev_station
+      @current_station.get_train(self)
     else
-      station_index = route.stations.index(station)
-      puts "Сейчас поезд на станции #{station.name}."
-      puts "Предыдущая станция - #{route.stations[station_index - 1].name}." if station_index != 0
-      puts "Следующая - #{route.stations[station_index + 1].name}." if station_index != route.stations.size - 1
+      puts "Первая станция"
     end
   end
+end
