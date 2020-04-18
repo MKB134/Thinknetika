@@ -15,6 +15,10 @@ class Train
     @speed = 0
   end
 
+  def increase_speed
+    self.speed += 20
+  end
+
   def add_car
     if speed.zero?
       self.car_count += 1
