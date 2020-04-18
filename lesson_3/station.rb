@@ -15,8 +15,7 @@ class Station
 
   def send_train(train)
     trains.delete(train)
-    train.station = nil
-  end
+    puts "Со станции #{name} отправился поезд №#{train.number}"  end
 
   def show_trains(type = nil)
       if type
