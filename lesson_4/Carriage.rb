@@ -1,0 +1,3 @@
+class carriage
+
+end
