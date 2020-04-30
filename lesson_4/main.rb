@@ -9,7 +9,6 @@ require_relative 'Route'
 
 stations = []
 trains = []
-CAR_TYPES = {'cargo' => CargoCarriage, 'passenger' => PassengerCarriage}
 
 puts (
 	1.Поздать станцию
@@ -44,6 +43,8 @@ loop do
 	end
 
 when 3 #прицепить вагон к поезду
+	if
+		train.add.
 	end
 
 when 6 #посмотреть список станций
