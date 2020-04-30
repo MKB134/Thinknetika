@@ -9,4 +9,3 @@ class PassengerTrain < train
     train.add_carriage(carriage)
   end
 end
-

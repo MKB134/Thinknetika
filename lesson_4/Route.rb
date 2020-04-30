@@ -23,6 +23,6 @@ class Route
 
   def show_stations
     puts "В маршрут #{stations.first.name} - #{stations.last.name} входят станции: "
-    stations.each{|station| puts " #{station.name}" }
+    stations.each {|station| puts " #{station.name}" }
   end  
 end

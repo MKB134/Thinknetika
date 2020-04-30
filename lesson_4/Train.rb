@@ -1,4 +1,4 @@
-class Train
+  class Train
 
   attr_accessor :speed, :number, :carriages 
   attr_reader :type, :route, :current_station
