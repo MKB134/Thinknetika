@@ -42,7 +42,7 @@ class Interface
         train = select_train
         train.remove_carriage(train.carriages.last)
       when 6 #посмотреть список станций
-      	select_stations
+      	select_route
       end
     end
   end
@@ -85,11 +85,13 @@ class Interface
 	end
 end
 
-  def select_stations
+  def select_route
   	show_stations
-  	puts "Выберите станцию"
-    route_station = gets.chomp.to_i - 1
-    @route[route_station]
+  	puts "from"
+    station_from = gets.chomp.to_i - 1
+    puts "to"
+    station_to = gets.chomp.to_i 
+    @route[station_from,station_to]
   end
 end
  
