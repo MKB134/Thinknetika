@@ -1,6 +1,6 @@
 class Train
 
-  attr_accessor :speed, :number, :car_count
+  attr_accessor :speed, :number, :carriages 
   attr_reader :type, :route, :current_station
 
   def initialize(number, type, car_count)
@@ -8,6 +8,7 @@ class Train
     @type = type
     @car_count = car_count
     @speed = 0
+    @carriages = []
     puts "Создан поезд № #{number}. Тип: #{type}. Количество вагонов: #{car_count}."
   end
 
@@ -19,23 +20,18 @@ class Train
     self.speed += 20
   end
 
-  def add_car
+  def add_cariage
     if speed.zero?
-      self.car_count += 1
-      puts "К поезду №#{number} прицепили вагон. Теперь их #{car_count}."
-    else
-      puts "На ходу нельзя прицеплять вагоны!"
+      self.carriages << carriage
+      puts "к поезду №#{number} прицепили вагон."
     end
   end
 
-  def remove_car
-    if car_count.zero?
-      puts "Вагонов уже не осталось."
-    elsif speed.zero?
-      self.car_count -= 1
-      puts "От поезда №#{number} отцепили вагон. Теперь их #{car_count}."
-    else
-      puts "На ходу нельзя отцеплять вагоны!"
+
+  def remove_cariage
+    if speed.zero?
+      self.carriages.delete(carriage)
+      puts "от поезда №#{number} отцепили вагон"
     end
   end
 
