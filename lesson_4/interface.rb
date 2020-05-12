@@ -80,16 +80,17 @@ class Interface
   end
   
   def show_stations
-	 @stations.each.with_index do |station, index|
-	 puts "Станция: #{index} #{station.name} "
-  end
+		@stations.each.with_index do |station, index|
+		puts "Станция: #{index} #{station.name} "
+	end
+end
 
   def select_stations
-  	 show_stations
-  	 puts "Выберите станцию"
-  	 route_station = gets.chomp.to_i - 1
-  	 @route[route_station]
-  	end
+  	show_stations
+  	puts "Выберите станцию"
+    route_station = gets.chomp.to_i - 1
+    @route[route_station]
   end
 end
+ 
 
