@@ -88,10 +88,10 @@ end
   def select_route
   	show_stations
   	puts "from"
-    station_from = gets.chomp.to_i - 1
+    from = gets.chomp.to_i - 1
     puts "to"
-    station_to = gets.chomp.to_i 
-    @route[station_from,station_to]
+    to = gets.chomp.to_i - 2 
+    Route.new(from.name, to.name)
   end
 end
  
