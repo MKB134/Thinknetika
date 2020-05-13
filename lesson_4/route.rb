@@ -2,13 +2,13 @@ class Route
   
   attr_accessor :stations, :from, :to,
   @name = name
-  def initialize(from, to)
-    @stations = [from, to]
-    puts "Создан маршрут #{from} - #{to}"
+  def initialize (from, to)
+
+    @stations = [from,to]
+    puts "Создан маршрут #{from.name} - #{to.name}"
   end
 
-  def add_station
-    station = gets.chomp
+  def add_station(station)
     self.stations.insert(-2, station) 
     puts "К маршруту #{stations.first.name} - #{stations.last.name} добавлена станция #{station.name}"
   end
