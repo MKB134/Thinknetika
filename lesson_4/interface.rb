@@ -12,7 +12,7 @@ class Interface
       3.Прицепить вагон к поезду
       4.ОТцепить вагон от поезда
       5.Назначать маршрут поезду
-      6.Посмотреть список станций
+      6.Создать маршрут
       7.Посмотреть список поездов на станции
       Создавать маршруты и управлять станциями в нем (добавлять, удалять)
       Перемещать поезд по маршруту вперед и назад
@@ -41,8 +41,14 @@ class Interface
       when 4 # ОТцепить вагон от поезда
         train = select_train
         train.remove_carriage(train.carriages.last)
-      when 6 #посмотреть список станций
-      	select_route
+      when 6 # создать маршрут
+      	print 'Выберите начальную станцию'
+      	station_1 = select_station
+      	print 'Выберите конечную станцию'
+      	station_2 = select_station
+      	@routes << Route.new(station_1, station_2)
+      	puts "маршрут успешно создан"
+      when 7
       end
     end
   end
@@ -80,19 +86,16 @@ class Interface
   end
   
   def show_stations
-		@stations.each.with_index do |station, index|
-		puts "Станция: #{index} #{station.name} "
+	 @stations.each.with_index(1) do |station, index|
+	 puts "Станция: #{index} #{station.name} "
+	end
+
+	def select_station
+	 show_stations
+	 print 'Выберите станцию' 
+	 	route_station = gets.chomp.to_i - 1
+	  @stations[route_station]
+	  end
 	end
 end
-
-  def select_route
-  	show_stations
-  	puts "from"
-    from = gets.chomp.to_i - 1
-    puts "to"
-    to = gets.chomp.to_i - 2 
-    Route.new(from.name, to.name)
-  end
-end
- 
 

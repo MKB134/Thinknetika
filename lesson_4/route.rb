@@ -1,13 +1,14 @@
 class Route
   
-  attr_accessor :stations, :from, :to
-  
-  def initialize (from, to)
+  attr_accessor :stations, :from, :to,
+  @name = name
+  def initialize(from, to)
     @stations = [from, to]
-    puts "Создан маршрут #{from.name} - #{to.name}"
+    puts "Создан маршрут #{from} - #{to}"
   end
 
-  def add_station(station)
+  def add_station
+    station = gets.chomp
     self.stations.insert(-2, station) 
     puts "К маршруту #{stations.first.name} - #{stations.last.name} добавлена станция #{station.name}"
   end
@@ -23,6 +24,6 @@ class Route
 
   def show_stations
     puts "В маршрут #{stations.first.name} - #{stations.last.name} входят станции: "
-    stations.each {|station| puts " #{station.name}" }
+    stations.each {|station| puts " #{station.name}"}
   end  
 end
