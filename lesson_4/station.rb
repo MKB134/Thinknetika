@@ -9,9 +9,9 @@ class Station
   end
 
   def get_train(train)
-    trains << train
-    puts "На станцию #{name} прибыл поезд №#{train.number}"
-  end
+   trains << train
+   puts "На станцию #{name} прибыл поезд №#{train.number}"
+ end
 
   def send_train(train)
     trains.delete(train)

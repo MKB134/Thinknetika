@@ -1,7 +1,6 @@
 class Route
   
-  attr_accessor :stations, :from, :to,
-  @name = name
+  attr_accessor :stations, :from, :to
   def initialize (from, to)
 
     @stations = [from,to]
@@ -9,8 +8,7 @@ class Route
   end
 
   def add_station(station)
-    self.stations.insert(-2, station) 
-    puts "К маршруту #{stations.first.name} - #{stations.last.name} добавлена станция #{station.name}"
+    self.stations.insert(-2, station)
   end
 
   def remove_station(station)
@@ -18,12 +16,14 @@ class Route
       puts "Первую и последнюю станции маршрута удалять нельзя!"
     else 
       self.stations.delete(station)
-      puts "Из маршрута #{stations.first.name} - #{stations.last.name} удалена станция #{station.name}"
     end
   end
 
   def show_stations
     puts "В маршрут #{stations.first.name} - #{stations.last.name} входят станции: "
     stations.each {|station| puts " #{station.name}"}
-  end  
+  end
+  def name
+    "#{stations.first.name} - #{stations.last.name}" 
+  end
 end

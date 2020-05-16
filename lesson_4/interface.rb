@@ -1,4 +1,5 @@
 class Interface
+   attr_reader  :current_station
   def initialize
     @stations = []
     @trains = []
@@ -6,17 +7,17 @@ class Interface
   end
 
   def help
-    puts ("
+    puts("
       1.Cоздать станцию
       2.Cоздать поезд
       3.Прицепить вагон к поезду
       4.ОТцепить вагон от поезда
       5.Назначать маршрут поезду
-      6.Создать маршрут
+      6.Создать маршрут управлять станциями в нем (добавлять, удалять)
       7.Посмотреть список поездов на станции
-      Создавать маршруты и управлять станциями в нем (добавлять, удалять)
-      Перемещать поезд по маршруту вперед и назад
-      8.выход
+      8. Добавить станцию в маршрут
+      9.удаление станций с маршрута
+      10. назначить маршрут поезду
     ")
   end
 
@@ -49,6 +50,15 @@ class Interface
       	@routes << Route.new(station_1, station_2)
       	puts "маршрут успешно создан"
       when 7
+        show_routes
+      when 8 #Добавление станции  в маршрут
+        add_station
+      when 9 # удаление станйии с маршрута
+        remove_station
+      when 10 # назначить маршрут поезду
+        get_route
+      when 11
+        station_in_route
       end
     end
   end
@@ -86,16 +96,57 @@ class Interface
   end
   
   def show_stations
-	 @stations.each.with_index(1) do |station, index|
-	 puts "Станция: #{index} #{station.name} "
+    @stations.each.with_index(1) do |station, index|
+      puts "#{index}. #{station.name} "
+    end
 	end
 
 	def select_station
-	 show_stations
-	 print 'Выберите станцию' 
-	 	route_station = gets.chomp.to_i - 1
+    show_stations
+	  print 'Выберите станцию' 
+	  route_station = gets.chomp.to_i - 1
 	  @stations[route_station]
-	  end
-	end
+  end
+
+  def show_routes
+    @routes.each.with_index(1) do |route, index|
+      puts "#{index}. #{route.name}"
+    end
+  end
+
+  def select_route
+    show_routes
+    print 'Выберите маршрут'
+    route_index = gets.chomp.to_i - 1
+    @routes[route_index]
+  end
+
+  def add_station
+    route = select_route
+    puts "Добавление станции"
+    station = select_station
+    route.add_station(station)
+    puts "Добавлена станция #{station.name} в маршрут #{route.name}"
+  end
+  def remove_station
+    route = select_route
+    puts "удаление станции"
+    station = select_station
+    route.remove_station(station)
+    puts "Из маршрута #{route.name} удалена станция #{station.name}"
+  end
+
+  def get_route
+   train = select_train
+   route = select_route
+   train.take_route(route)
+  end
+
+  def station_in_route
+    select_route
+    route = select_route
+    route.show_stations
+  end
 end
+
 

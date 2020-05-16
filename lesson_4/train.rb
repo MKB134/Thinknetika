@@ -1,7 +1,7 @@
 class Train
 
-  attr_accessor :speed, :number, :carriages
-  attr_reader :route, :current_station
+  attr_accessor :speed, :number, :carriages 
+  attr_reader  :current_station, :route
 
   def initialize(number)
     @number = number
@@ -33,8 +33,7 @@ class Train
   end
 
   def take_route(route)
-    @route = route
-    @current_station = route.stations.first
+    @current_station = route.station.first
     @current_station.get_train(self)
   end
 
