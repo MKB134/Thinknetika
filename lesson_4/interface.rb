@@ -18,6 +18,9 @@ class Interface
       8. Добавить станцию в маршрут
       9.удаление станций с маршрута
       10. назначить маршрут поезду
+      11. присвоить маршрут
+      12. следующая станция
+      13. предыдущая станция
     ")
   end
 
@@ -59,6 +62,10 @@ class Interface
         get_route
       when 11
         station_in_route
+      when 12
+        next_st
+      when 13
+        prev_st
       end
     end
   end
@@ -140,6 +147,16 @@ class Interface
    train = select_train
    route = select_route
    train.take_route(route)
+  end
+
+  def next_st
+    train = select_train
+    train.forward
+  end
+
+  def prev_st
+    train = select_train
+    train.backward
   end
 
   def station_in_route

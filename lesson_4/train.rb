@@ -31,9 +31,10 @@ class Train
       puts "от поезда №#{number} отцепили вагон"
     end
   end
-
-  def take_route(route)
-    @current_station = route.station.first
+  
+    def take_route(route)
+    @route = route
+    @current_station = route.stations.first
     @current_station.get_train(self)
   end
 
