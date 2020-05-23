@@ -24,6 +24,6 @@ class Route
     stations.each {|station| puts " #{station.name}"}
   end
   def name
-    "#{stations.first.name} - #{stations.last.name}"
+    "#{stations.first.name} - #{stations.last.name}" 
   end
 end

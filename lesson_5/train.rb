@@ -1,21 +1,15 @@
 class Train
+
   attr_accessor :speed, :number, :carriages 
   attr_reader  :current_station, :route
-  include Manufacturer
-  include InstanceCounter
   @@trains = {}
 
   def initialize(number)
-    register_instance
     @number = number
     @speed = 0
     @carriages = []
     puts "Создан поезд № #{number}. Тип: #{self.class}. Количество вагонов: #{@carriages.size}."
-    @@trains[self.number] = self
-  end
-
-  def self.find(number)
-    @@trains[number]
+    @@trains = [self.number] = self
   end
 
   def stop

@@ -1,0 +1,3 @@
+class CargoCarriage < Carriage
+
+end
