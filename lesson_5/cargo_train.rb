@@ -1,8 +1,7 @@
 class CargoTrain < Train
-
-def add_сarriage
+	def add_carrige
 	if carriage.class == CargoCarriage
-	super(carriage)
+	 super(carriage)
+	end
 end
-
-
+	 	 	
