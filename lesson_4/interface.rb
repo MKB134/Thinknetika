@@ -1,5 +1,5 @@
 class Interface
-   attr_reader  :current_station
+  attr_reader :current_station
   def initialize
     @stations = []
     @trains = []
@@ -46,12 +46,12 @@ class Interface
         train = select_train
         train.remove_carriage(train.carriages.last)
       when 6 # создать маршрут
-      	print 'Выберите начальную станцию'
-      	station_1 = select_station
-      	print 'Выберите конечную станцию'
-      	station_2 = select_station
-      	@routes << Route.new(station_1, station_2)
-      	puts "маршрут успешно создан"
+        print 'Выберите начальную станцию'
+        station_1 = select_station
+        print 'Выберите конечную станцию'
+        station_2 = select_station
+        @routes << Route.new(station_1, station_2)
+        puts "маршрут успешно создан"
       when 7
         show_routes
       when 8 #Добавление станции  в маршрут
@@ -101,18 +101,18 @@ class Interface
     train_index = gets.chomp.to_i - 1
     @trains[train_index]
   end
-  
+
   def show_stations
     @stations.each.with_index(1) do |station, index|
       puts "#{index}. #{station.name} "
     end
-	end
+  end
 
-	def select_station
-   show_stations
-	 print 'Выберите станцию' 
-	 route_station = gets.chomp.to_i - 1
-	 @stations[route_station]
+  def select_station
+  show_stations
+  print 'Выберите станцию' 
+  route_station = gets.chomp.to_i - 1
+  @stations[route_station]
   end
 
   def show_routes
