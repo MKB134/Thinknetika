@@ -103,16 +103,15 @@ class Interface
   end
   
   def show_stations
-    @stations.each.with_index(1) do |station, index|
-      puts "#{index}. #{station.name} "
-    end
-	end
+  @stations.each.with_index(1) do |station, index|
+  puts "#{index}. #{station.name} "
+  end
 
-	def select_station
-   show_stations
-	 print 'Выберите станцию' 
-	 route_station = gets.chomp.to_i - 1
-	 @stations[route_station]
+  def select_station
+  show_stations
+  print 'Выберите станцию' 
+  route_station = gets.chomp.to_i - 1
+  @stations[route_station]
   end
 
   def show_routes
@@ -135,6 +134,7 @@ class Interface
     route.add_station(station)
     puts "Добавлена станция #{station.name} в маршрут #{route.name}"
   end
+  
   def remove_station
     route = select_route
     puts "удаление станции"
