@@ -1,11 +1,17 @@
 class Train
 
-  attr_accessor :speed, :number, :carriages 
-  attr_reader  :current_station, :route
+  attr_accessor :speed, :number, :carriages
+  attr_reader :current_station, :route
+  include Manufacturer
+  include InstanceCounter
+  include Valid
   @@trains = {}
+
+  TRAIN_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
 
   def initialize(number)
     @number = number
+    validate!
     @speed = 0
     @carriages = []
     puts "Создан поезд № #{number}. Тип: #{self.class}. Количество вагонов: #{@carriages.size}."
@@ -76,5 +82,8 @@ class Train
     else
       puts "Первая станция"
     end
+  end
+  def validate!
+    raise "Номер поезда не соответствует шаблону (ххххх или ххх-хх)" if number !~ TRAIN_NUMBER
   end
 end
