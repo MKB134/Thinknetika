@@ -35,9 +35,9 @@ class Station
     @@all_stations
   end
 
-  def validate!
-    raise "Название станции не может быть пустым, попробуйте еще раз." if name.empty?
-    raise "Слишком длинное название" if name.lenght > 10
+    def validate!
+      puts "Название станции не может быть пустым, попробуйте еще раз." if name.empty?
+      puts "Слишком длинное название" if name.lenght > 10
+    end
   end
 end
-
