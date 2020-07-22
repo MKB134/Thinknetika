@@ -83,6 +83,13 @@ class Train
       puts "Первая станция"
     end
   end
+
+    def each_carriage
+    @carriages.each.with_index(1) do |carriage, x|
+      yield(carriage, x) unless @carriages.empty?
+    end
+  end
+   
   def validate!
     raise "Номер поезда не соответствует шаблону (ххххх или ххх-хх)" if number !~ TRAIN_NUMBER
   end

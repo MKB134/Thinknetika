@@ -5,3 +5,4 @@ class CargoTrain < Train
     end
   end
 end
+

@@ -30,14 +30,23 @@ class Station
       puts "Поезда на станции #{name}: "
       trains.each {|train| puts train.number}
     end
-  
-  def self.all
+
+    def self.all
     @@all_stations
   end
 
-    def validate!
+  def station_trains
+    puts "Поездов на станции #{@trains.size}"
+    return unless @trains.any?
+    @trains.each.with_index(1) do |train, x|
+      puts "#{x}. Поезд #{train.number}"
+    end
+  end
+
+  def validate!
       puts "Название станции не может быть пустым, попробуйте еще раз." if name.empty?
       puts "Слишком длинное название" if name.lenght > 10
     end
   end
 end
+
