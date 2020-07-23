@@ -35,12 +35,8 @@ class Station
     @@all_stations
   end
 
-  def station_trains
-    puts "Поездов на станции #{@trains.size}"
-    return unless @trains.any?
-    @trains.each.with_index(1) do |train, x|
-      puts "#{x}. Поезд #{train.number}"
-    end
+  def each_train
+    @trains.each { |train| yield(train) } unless @trains.empty?
   end
 
   def validate!

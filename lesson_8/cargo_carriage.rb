@@ -1,6 +1,6 @@
 class CargoCarriage < Carriage
 	def take_capacity
-		super(occupy)
+		super(1)
 	end
 end
 
