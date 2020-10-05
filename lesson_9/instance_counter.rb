@@ -17,6 +17,7 @@ module InstanceCounter
 
   module InstanceMethods
     private
+
     def register_instance
       self.class.send :plus_counter
     end

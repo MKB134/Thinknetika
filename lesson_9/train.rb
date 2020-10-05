@@ -1,5 +1,4 @@
 class Train
-
   attr_accessor :speed, :number, :carriages
   attr_reader :current_station, :route
   include Manufacturer
@@ -7,7 +6,7 @@ class Train
   include Valid
   @@trains = {}
 
-  TRAIN_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
+  TRAIN_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i.freeze
 
   def initialize(number)
     @number = number
@@ -32,19 +31,19 @@ class Train
 
   def add_carriage(carriage)
     if speed.zero?
-      self.carriages << carriage
+      carriages << carriage
       puts "к поезду №#{number} прицепили вагон."
     end
   end
 
   def remove_carriage(carriage)
     if speed.zero?
-      self.carriages.delete(carriage)
+      carriages.delete(carriage)
       puts "от поезда №#{number} отцепили вагон"
     end
   end
-  
-    def take_route(route)
+
+  def take_route(route)
     @route = route
     @current_station = route.stations.first
     @current_station.get_train(self)
@@ -70,7 +69,7 @@ class Train
       @current_station = next_station
       @current_station.get_train(self)
     else
-      puts "Послед. станция"
+      puts 'Послед. станция'
     end
   end
 
@@ -80,17 +79,17 @@ class Train
       @current_station = prev_station
       @current_station.get_train(self)
     else
-      puts "Первая станция"
+      puts 'Первая станция'
     end
   end
 
-    def each_carriage
+  def each_carriage
     @carriages.each.with_index(1) do |carriage, x|
       yield(carriage, x) unless @carriages.empty?
     end
   end
-   
+
   def validate!
-    raise "Номер поезда не соответствует шаблону (ххххх или ххх-хх)" if number !~ TRAIN_NUMBER
+    raise 'Номер поезда не соответствует шаблону (ххххх или ххх-хх)' if number !~ TRAIN_NUMBER
   end
 end

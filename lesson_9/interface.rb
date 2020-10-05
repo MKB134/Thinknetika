@@ -1,5 +1,5 @@
 class Interface
-  attr_reader  :current_station
+  attr_reader :current_station
   def initialize
     @stations = []
     @trains = []
@@ -28,7 +28,7 @@ class Interface
   def run
     help
     loop do
-      print "введите номер команды"
+      print 'введите номер команды'
       choise = gets.chomp.to_i
       case choise
 
@@ -48,11 +48,11 @@ class Interface
         train.remove_carriage(train.carriages.last)
       when 6 # создать маршрут
         print 'Выберите начальную станцию'
-      	station_1 = select_station
-      	print 'Выберите конечную станцию'
-      	station_2 = select_station
-      	@routes << Route.new(station_1, station_2)
-      	puts "маршрут успешно создан"
+        station_1 = select_station
+        print 'Выберите конечную станцию'
+        station_2 = select_station
+        @routes << Route.new(station_1, station_2)
+        puts 'маршрут успешно создан'
       when 7
         show_routes
       when 8 #Добавление станции  в маршрут
@@ -68,13 +68,13 @@ class Interface
       when 13
         prev_st
       when 14
-      take_capacity 
+        take_capacity
       end
     end
   end
 
   def create_station
-    puts "Введите название"
+    puts 'Введите название'
     name = gets.chomp
     @stations << Station.new(name)
   rescue RuntimeError => e
@@ -113,17 +113,18 @@ class Interface
     train_index = gets.chomp.to_i - 1
     @trains[train_index]
   end
-  
+
   def show_stations
-  @stations.each.with_index(1) do |station, index|
-  puts "#{index}. #{station.name} "
+    @stations.each.with_index(1) do |station, index|
+      puts "#{index}. #{station.name} "
+    end
   end
 
   def select_station
-  show_stations
-  print 'Выберите станцию' 
-  route_station = gets.chomp.to_i - 1
-  @stations[route_station]
+    show_stations
+    print 'Выберите станцию'
+    route_station = gets.chomp.to_i - 1
+    @stations[route_station]
   end
 
   def show_routes
@@ -141,24 +142,24 @@ class Interface
 
   def add_station
     route = select_route
-    puts "Добавление станции"
+    puts 'Добавление станции'
     station = select_station
     route.add_station(station)
     puts "Добавлена станция #{station.name} в маршрут #{route.name}"
   end
-  
+
   def remove_station
     route = select_route
-    puts "удаление станции"
+    puts 'удаление станции'
     station = select_station
     route.remove_station(station)
     puts "Из маршрута #{route.name} удалена станция #{station.name}"
   end
 
   def get_route
-   train = select_train
-   route = select_route
-   train.take_route(route)
+    train = select_train
+    route = select_route
+    train.take_route(route)
   end
 
   def next_st
@@ -172,10 +173,9 @@ class Interface
   end
 
   def station_in_route
-  select_route
+    select_route
     route = select_route
-      route.show_stations
-    end
+    route.show_stations
   end
 
   def take_capacity

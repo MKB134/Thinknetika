@@ -1,10 +1,10 @@
 class Station
-
+  # stations
   include Valid
   attr_reader :name, :trains
   @@all_stations = []
 
-  def initialize(name)  
+  def initialize(name)
     @name = name
     @trains = []
     validate!
@@ -13,25 +13,26 @@ class Station
   end
 
   def get_train(train)
-   trains << train
-   puts "На станцию #{name} прибыл поезд №#{train.number}"
- end
+    trains << train
+    puts "На станцию #{name} прибыл поезд №#{train.number}"
+  end
 
   def send_train(train)
     trains.delete(train)
-    puts "Со станции #{name} отправился поезд №#{train.number}"     
+    puts "Со станции #{name} отправился поезд №#{train.number}"
   end
 
   def show_trains(type = nil)
     if type
-      puts "Поезда на станции #{name} типа #{type}: "  
-      trains.each {|train| puts train.number if train.type == type}
+      puts "Поезда на станции #{name} типа #{type}: "
+      trains.each { |train| puts train.number if train.type == type }
     else
       puts "Поезда на станции #{name}: "
-      trains.each {|train| puts train.number}
+      trains.each { |train| puts train.number }
     end
+  end
 
-    def self.all
+  def self.all
     @@all_stations
   end
 
@@ -40,9 +41,7 @@ class Station
   end
 
   def validate!
-      puts "Название станции не может быть пустым, попробуйте еще раз." if name.empty?
-      puts "Слишком длинное название" if name.lenght > 10
-    end
+    puts 'Название станции не может быть пустым, попробуйте еще раз.' if name.empty?
+    puts 'Слишком длинное название' if name.lenght > 10
   end
 end
-

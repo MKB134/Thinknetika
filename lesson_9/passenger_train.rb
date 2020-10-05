@@ -1,7 +1,5 @@
 class PassengerTrain < Train
   def add_carriage(carriage)
-    if carriage.class == PassengerCarriage
-      super(carriage)
-    end
+    super(carriage) if carriage.class == PassengerCarriage
   end
 end
