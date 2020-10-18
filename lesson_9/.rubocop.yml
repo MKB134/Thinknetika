@@ -11,14 +11,10 @@ Style/Documentation:
 Style/AsciiComments:
     Enabled: false
 
-Naming/AccessorMethodName:
-    Enabled: false
     
 Metrics/AbcSize:
     Enabled: false
 
-Layout/LeadingCommentSpace:
-    Enabled: false
 
 Metrics/ClassLength:
     Enabled: false
